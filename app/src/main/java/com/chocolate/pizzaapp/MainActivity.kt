@@ -3,6 +3,7 @@ package com.chocolate.pizzaapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import com.chocolate.pizzaapp.pizza.PizzaScreen
 import com.chocolate.pizzaapp.ui.theme.PizzaAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -10,7 +11,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PizzaAppTheme {
-
+                PizzaScreen(onMovieImageChanged = {})
             }
         }
     }

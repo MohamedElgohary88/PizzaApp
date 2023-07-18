@@ -1,4 +1,4 @@
-package com.chocolate.pizzaapp.pizza.components
+package com.chocolate.pizzaapp.pizza.composable
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

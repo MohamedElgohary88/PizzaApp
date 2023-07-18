@@ -1,31 +1,55 @@
 package com.chocolate.pizzaapp.pizza
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.chocolate.pizzaapp.R
-import com.chocolate.pizzaapp.pizza.components.AddToCartButton
-import com.chocolate.pizzaapp.pizza.components.CreateText
-import com.chocolate.pizzaapp.pizza.components.LazyIngredientsRow
-import com.chocolate.pizzaapp.pizza.components.RowPizzaSize
-import com.chocolate.pizzaapp.pizza.components.TopAppBar
+import com.chocolate.pizzaapp.pizza.composable.AddToCartButton
+import com.chocolate.pizzaapp.pizza.composable.CreateText
+import com.chocolate.pizzaapp.pizza.composable.LazyIngredientsRow
+import com.chocolate.pizzaapp.pizza.composable.RowPizzaSize
+import com.chocolate.pizzaapp.pizza.composable.TopAppBar
+import com.chocolate.pizzaapp.pizza.composable.ViewPager
 import com.chocolate.pizzaapp.ui.theme.Gray
 
-@Preview(showSystemUi = true)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun PizzaScreen() {
+fun PizzaScreen(
+    viewModel: PizzaViewModel = hiltViewModel(),
+    onMovieImageChanged: (Int) -> Unit,
+) {
+
+    val systemUiController = rememberSystemUiController()
+    val useDarkIcons = !isSystemInDarkTheme()
+    DisposableEffect(systemUiController, useDarkIcons) {
+        systemUiController.setSystemBarsColor(color = Color.Transparent, darkIcons = useDarkIcons)
+        onDispose {
+            systemUiController.setSystemBarsColor(color = Color.Transparent, darkIcons = useDarkIcons)
+        }
+    }
+
+    val state by viewModel.state.collectAsState()
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
-        val (topBar, imagePlate, price, rowSize, ingredientsRow, customize, addToCartButton) = createRefs()
+        val (topBar, imagePlate, pager, price, rowSize, ingredientsRow, customize, addToCartButton) = createRefs()
+
         TopAppBar(modifier = Modifier.constrainAs(topBar) {
             top.linkTo(parent.top, margin = 16.dp)
             start.linkTo(parent.start)
@@ -43,6 +67,20 @@ fun PizzaScreen() {
                 .height(256.dp)
                 .fillMaxWidth()
         )
+        Box(
+            modifier = Modifier
+                .constrainAs(pager) {
+                    top.linkTo(topBar.bottom, margin = 86.dp)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                }.fillMaxWidth()
+        ) {
+            ViewPager(
+                state.imagesList,
+                rememberPagerState(initialPage = 1),
+                onMovieImageChanged,
+            )
+        }
         CreateText("$17", 30, fontWeight = FontWeight.Bold,
             modifier = Modifier.constrainAs(price) {
                 top.linkTo(imagePlate.bottom, margin = 32.dp)

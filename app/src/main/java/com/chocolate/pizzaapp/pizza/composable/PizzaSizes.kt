@@ -1,4 +1,4 @@
-package com.chocolate.pizzaapp.pizza.components
+package com.chocolate.pizzaapp.pizza.composable
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,22 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.chocolate.pizzaapp.ui.theme.Black
 
-@Composable
-fun CreateText(
-    text: String,
-    fontSize: Int,
-    color: Color = Black,
-    fontWeight: FontWeight = FontWeight.Normal,
-    modifier: Modifier = Modifier
-) {
-    Text(
-        text = text,
-        fontSize = fontSize.sp,
-        color = color,
-        fontWeight = fontWeight,
-        modifier = modifier
-    )
-}
+
 
 @Composable
 fun RowPizzaSize(modifier: Modifier = Modifier) {
@@ -48,4 +33,19 @@ fun RowPizzaSize(modifier: Modifier = Modifier) {
             CreateText("L", 24)
         }
     }
+}@Composable
+fun CreateText(
+    text: String,
+    fontSize: Int,
+    color: Color = Black,
+    fontWeight: FontWeight = FontWeight.Normal,
+    modifier: Modifier = Modifier
+) {
+    Text(
+        text = text,
+        fontSize = fontSize.sp,
+        color = color,
+        fontWeight = fontWeight,
+        modifier = modifier
+    )
 }
