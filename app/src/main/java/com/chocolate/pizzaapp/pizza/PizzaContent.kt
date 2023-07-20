@@ -1,6 +1,7 @@
 package com.chocolate.pizzaapp.pizza
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
@@ -28,6 +30,7 @@ import com.chocolate.pizzaapp.pizza.composable.PizzaPrice
 import com.chocolate.pizzaapp.pizza.composable.TopAppBar
 import com.chocolate.pizzaapp.pizza.viewmodel.PizzaUiState
 import com.chocolate.pizzaapp.pizza.viewmodel.PizzaSize
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
