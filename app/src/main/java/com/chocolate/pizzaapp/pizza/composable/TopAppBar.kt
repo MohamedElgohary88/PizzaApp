@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,12 +29,12 @@ fun TopAppBar(modifier: Modifier = Modifier) {
     ) {
         Icon(
             painter = painterResource(R.drawable.ic_arrow_back),
-            contentDescription = "Left Icon",
+            contentDescription = stringResource(R.string.left_icon),
             modifier = modifier.padding(start = 16.dp)
         )
         Spacer(modifier = modifier.weight(1f))
         Text(
-            text = "Pizza",
+            text = stringResource(R.string.pizza),
             style = TextStyle(
                 fontWeight = FontWeight.Bold,
                 fontSize = 22.sp
@@ -43,7 +44,7 @@ fun TopAppBar(modifier: Modifier = Modifier) {
         Spacer(modifier = modifier.weight(1f))
         Icon(
             painter = painterResource(R.drawable.ic_heart),
-            contentDescription = "Right Icon",
+            contentDescription = stringResource(R.string.heart_icon),
             modifier = modifier.padding(end = 16.dp)
         )
     }

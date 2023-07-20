@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">PizzaApp</string>
     <string name="plate">plate</string>
+    <string name="customize_your_pizza">CUSTOMIZE YOUR PIZZA</string>
+    <string name="_17">$17</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="ingredient">ingredient</string>
+    <string name="s">S</string>
+    <string name="m">M</string>
+    <string name="l">L</string>
+    <string name="size_animation">size Animation</string>
+    <string name="left_icon">Left Icon</string>
+    <string name="pizza">Pizza</string>
+    <string name="heart_icon">Heart Icon</string>
+    <string name="bread">Bread</string>
 </resources>
